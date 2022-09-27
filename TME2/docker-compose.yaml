@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  postgresql:
+    restart: always
+    build:
+      context: ./crud-database
+    ports:
+      - ${PGPORT}:5432
+  backend:
+    restart: always
+    build: 
+      context: ./crud
+    ports:
+      - ${PORT}:3000
+    environment:
+      PORT: 3000
+      COUCOU: ${COUCOU}
+      PGHOST: ${PGHOST}
+      PGUSER: ${PGUSER}
+      PGDATABASE: ${PGDATABASE}
+      PGPORT: ${PGPORT}
+    links:
+      - postgresql:${PGHOST}
+    depends_on:
+      - postgresql
