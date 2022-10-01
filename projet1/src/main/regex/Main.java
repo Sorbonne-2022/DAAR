@@ -3,10 +3,9 @@ package src.main.regex;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Scanner;
+
+import static src.main.regex.NDF.toNDFAutomaton;
 
 public class Main {
     private static String regEx;
@@ -14,17 +13,21 @@ public class Main {
 
     private static RegEx regExComponent = new RegEx();
 
-    public static String readFileAsString(String filePath) throws IOException {
+    public static String readFileAsString(String filePath) {
         StringBuilder fileData = new StringBuilder();
-        BufferedReader reader = new BufferedReader(
-                new FileReader(filePath));
-        char[] buf = new char[1024];
-        int numRead = 0;
-        while ((numRead = reader.read(buf)) != -1) {
-            String readData = String.valueOf(buf, 0, numRead);
-            fileData.append(readData);
+        try {
+            BufferedReader reader = new BufferedReader(
+                    new FileReader(filePath));
+            char[] buf = new char[1024];
+            int numRead = 0;
+            while ((numRead = reader.read(buf)) != -1) {
+                String readData = String.valueOf(buf, 0, numRead);
+                fileData.append(readData);
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        reader.close();
         return fileData.toString();
     }
 
@@ -40,7 +43,6 @@ public class Main {
         }
         System.out.println("  >> Parsing regEx: \"" + regEx + "\".");
         System.out.println("  >> Your file path: " + arg[1]);
-        System.out.println("  >> Text: \n" + text);
         System.out.println("  >> ...");
 
         if (regEx.length() < 1) {
@@ -52,6 +54,10 @@ public class Main {
             try {
                 RegExTree ret = regExComponent.parse(regEx);
                 System.out.println("  >> Tree result: " + ret.toString() + ".");
+
+                NDFState ndfState = toNDFAutomaton(ret);
+
+                System.out.println("  >> NDF result: " + ndfState.toString() + ".");
             } catch (Exception e) {
                 System.err.println("  >> ERROR: syntax error for regEx \"" + regEx + "\".");
             }

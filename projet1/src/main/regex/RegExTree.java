@@ -2,6 +2,8 @@ package src.main.regex;
 
 import java.util.ArrayList;
 
+import static src.main.regex.OperatorEnum.*;
+
 class RegExTree {
     protected int root;
     protected ArrayList<RegExTree> subTrees;
@@ -20,10 +22,10 @@ class RegExTree {
     }
 
     private String rootToString() {
-        if (root == RegEx.CONCAT) return ".";
-        if (root == RegEx.ETOILE) return "*";
-        if (root == RegEx.ALTERN) return "|";
-        if (root == RegEx.DOT) return ".";
+        if (root == CONCAT) return ".";
+        if (root == ETOILE) return "*";
+        if (root == ALTERN) return "|";
+        if (root == DOT) return ".";
         return Character.toString((char) root);
     }
 }

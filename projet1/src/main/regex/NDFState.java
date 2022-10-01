@@ -2,14 +2,21 @@ package src.main.regex;
 
 import java.util.ArrayList;
 
-class NDFAutomaton {
+class NDFState {
     //IMPLICIT REPRESENTATION HERE: INIT STATE IS ALWAYS 0; FINAL STATE IS ALWAYS transitionTable.length-1
+
+    private int id;
+
     protected int[][] transitionTable; //ASCII transition
     protected ArrayList<Integer>[] epsilonTransitionTable; //epsilon transition list
 
-    public NDFAutomaton(int[][] transitionTable, ArrayList<Integer>[] epsilonTransitionTable) {
+    public NDFState(int[][] transitionTable, ArrayList<Integer>[] epsilonTransitionTable) {
         this.transitionTable = transitionTable;
         this.epsilonTransitionTable = epsilonTransitionTable;
+    }
+
+    public int getId() {
+        return id;
     }
 
     //PRINT THE AUTOMATON TRANSITION TABLE
