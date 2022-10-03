@@ -1,38 +1,18 @@
-package src.main.regex;
+package src.main.regex.automata;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-import static src.main.regex.NDF.toNDFAutomaton;
+import static src.main.regex.automata.NDF.toNDFAutomaton;
+import static src.main.regex.commons.FileHelper.readFileAsString;
 
 public class Main {
     private static String regEx;
     private static String text;
-
-    private static RegEx regExComponent = new RegEx();
-
-    public static String readFileAsString(String filePath) {
-        StringBuilder fileData = new StringBuilder();
-        try {
-            BufferedReader reader = new BufferedReader(
-                    new FileReader(filePath));
-            char[] buf = new char[1024];
-            int numRead = 0;
-            while ((numRead = reader.read(buf)) != -1) {
-                String readData = String.valueOf(buf, 0, numRead);
-                fileData.append(readData);
-            }
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return fileData.toString();
-    }
+    private static final RegEx regExComponent = new RegEx();
 
     //MAIN
-    public static void main(String arg[]) throws IOException {
+    public static void main(String[] arg) throws IOException {
         if (arg.length > 1) {
             regEx = arg[0];
             text = readFileAsString(arg[1]);
@@ -57,6 +37,7 @@ public class Main {
 
                 NDFState ndfState = toNDFAutomaton(ret);
 
+                assert ndfState != null;
                 System.out.println("  >> NDF result: " + ndfState.toString() + ".");
             } catch (Exception e) {
                 System.err.println("  >> ERROR: syntax error for regEx \"" + regEx + "\".");

@@ -1,8 +1,8 @@
-package src.main.regex;
+package src.main.regex.automata;
 
 import java.util.ArrayList;
 
-import static src.main.regex.OperatorEnum.*;
+import static src.main.regex.automata.OperatorEnum.*;
 
 public class NDF {
     public static NDFState toNDFAutomaton(RegExTree ret) {

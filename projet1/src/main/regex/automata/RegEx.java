@@ -1,8 +1,8 @@
-package src.main.regex;
+package src.main.regex.automata;
 
 import java.util.ArrayList;
 
-import static src.main.regex.OperatorEnum.*;
+import static src.main.regex.automata.OperatorEnum.*;
 
 public class RegEx {
     //MACROS
@@ -183,7 +183,7 @@ public class RegEx {
     }
 
     //EXAMPLE
-    // --> src.main.regex.RegEx from Aho-Ullman book Chap.10 Example 10.25
+    // --> src.main.regex.automata.RegEx from Aho-Ullman book Chap.10 Example 10.25
     private RegExTree exampleAhoUllman() {
         RegExTree a = new RegExTree((int) 'a', new ArrayList<RegExTree>());
         RegExTree b = new RegExTree((int) 'b', new ArrayList<RegExTree>());

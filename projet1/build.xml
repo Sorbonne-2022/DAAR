@@ -26,7 +26,7 @@
 
         <jar jarfile="${build}/regex.jar" basedir="${build}" >
             <manifest>
-                <attribute name="Main-Class" value="regex.Main" />
+                <attribute name="Main" value="regex.Main" />
             </manifest>
         </jar>
     </target>

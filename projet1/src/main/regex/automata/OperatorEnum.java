@@ -1,4 +1,4 @@
-package src.main.regex;
+package src.main.regex.automata;
 
 import java.util.ArrayList;
 import java.util.Arrays;
