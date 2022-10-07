@@ -3,9 +3,7 @@ package src.main.regex.automata;
 import java.util.ArrayList;
 
 class NDFState {
-    //IMPLICIT REPRESENTATION HERE: INIT STATE IS ALWAYS 0; FINAL STATE IS ALWAYS transitionTable.length-1
-
-    private int id;
+    //IMPLICIT REPRESENTATION HERE: INIT STATE IS ALWAYS 0; FINAL STATE IS ALWAYS transitionTable.length-
 
     protected int[][] transitionTable; //ASCII transition
     protected ArrayList<Integer>[] epsilonTransitionTable; //epsilon transition list
@@ -13,10 +11,6 @@ class NDFState {
     public NDFState(int[][] transitionTable, ArrayList<Integer>[] epsilonTransitionTable) {
         this.transitionTable = transitionTable;
         this.epsilonTransitionTable = epsilonTransitionTable;
-    }
-
-    public int getId() {
-        return id;
     }
 
     //PRINT THE AUTOMATON TRANSITION TABLE

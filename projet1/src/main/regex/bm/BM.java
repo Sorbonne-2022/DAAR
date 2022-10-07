@@ -1,13 +1,17 @@
 package src.main.regex.bm;
 
+// Boyer-Moore
 public class BM {
-    static int NO_OF_CHARS = 256;
+    int NO_OF_CHARS = 256;
 
-    static int max(int a, int b) {
+    public BM() {
+    }
+
+    protected int max(int a, int b) {
         return (a > b) ? a : b;
     }
 
-    static void badCharHeuristic(char[] str, int size, int badchar[]) {
+    protected void badCharHeuristic(char[] str, int size, int badchar[]) {
 
         // Initialize all occurrences as -1
         for (int i = 0; i < NO_OF_CHARS; i++)
@@ -17,7 +21,7 @@ public class BM {
             badchar[(int) str[i]] = i;
     }
 
-    static void search(char txt[], char pat[]) {
+    public boolean search(char txt[], char pat[]) {
         int m = pat.length;
         int n = txt.length;
 
@@ -35,16 +39,10 @@ public class BM {
             if (j < 0) {
                 System.out.println("Patterns occur at shift = " + s);
                 s += (s + m < n) ? m - badchar[txt[s + m]] : 1;
-
+                return true;
             } else
                 s += max(1, j - badchar[txt[s + j]]);
         }
-    }
-
-    public static void main(String[] args) {
-
-        char txt[] = "ABAAABCD".toCharArray();
-        char pat[] = "ABC".toCharArray();
-        search(txt, pat);
+        return false;
     }
 }

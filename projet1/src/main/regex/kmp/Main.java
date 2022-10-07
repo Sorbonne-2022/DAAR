@@ -1,7 +1,11 @@
 package src.main.regex.kmp;
 
+import src.main.regex.commons.FileHelper;
+
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import static src.main.regex.commons.FileHelper.readFileAsString;
 
@@ -9,47 +13,55 @@ public class Main {
     private static String factor;
     private static String text;
 
+    private static String outFilePath = "";
+    private static List<String> inputFilePaths = new ArrayList<>();
+
     //MAIN
     public static void main(String[] arg) throws IOException {
-        if (arg.length > 1) {
+        if (arg.length > 2) {
             factor = arg[0];
-            text = readFileAsString(arg[1]);
-        } else {
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("  >> Please enter a factor - regex concatenation : ");
-            factor = scanner.next();
-        }
-        System.out.println("  >> Factor: \"" + factor + "\".");
-        System.out.println("  >> Your file path: " + arg[1]);
+            inputFilePaths = FileHelper.findAllFilesInFolder(arg[1]);
 
-        long start = System.currentTimeMillis();
+            FileHelper.deleteFile(arg[2]);
 
-        KMP kmp = new KMP(factor);
+            for (String path : inputFilePaths) {
+                text = readFileAsString(arg[1] + "/" + path);
 
-        String[] lines = text.split("\n");
+                System.out.println("  >> Factor: \"" + factor + "\".");
+                System.out.println("  >> Your file path: " + arg[1]);
 
-        int lineLen = lines.length;
+                KMP kmp = new KMP(factor);
 
-        for (int i = 0; i < lineLen; i++) {
-            kmp.setText(lines[i]);
-            if (kmp.searchStringInText()) {
-                System.out.println("  >> Line " + (i + 1) + " : " + lines[i]);
+                String[] lines = text.split("\n");
+
+                int lineLen = lines.length;
+
+                if (arg[2] == null) {
+                    outFilePath = "./data/kmp/txt";
+                }
+
+                long start = new Date().getTime();
+
+                for (int i = 0; i < lineLen; i++) {
+                    kmp.setText(lines[i]);
+                    if (kmp.searchStringInText()) {
+                        System.out.println("  >> Line " + (i + 1) + " : " + lines[i]);
+                    }
+                }
+
+                long end = new Date().getTime();
+
+                FileHelper.writeFile(arg[2], text.length() + " " + (end - start) + "\n");
+
+                System.out.println("  >> ...");
+
+                if (factor.length() < 1) {
+                    System.err.println("  >> ERROR: empty factor.");
+                }
+
+                System.out.println("  >> ...");
+                System.out.println("  >> Search completed.");
             }
         }
-
-        long end = System.currentTimeMillis();
-
-        System.out.println("  >> Time complexity " + (end - start));
-
-
-        System.out.println("  >> ...");
-
-        if (factor.length() < 1) {
-            System.err.println("  >> ERROR: empty factor.");
-        } else {
-        }
-
-        System.out.println("  >> ...");
-        System.out.println("  >> Search completed.");
     }
 }
