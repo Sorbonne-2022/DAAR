@@ -15,14 +15,15 @@ ERE.s".
 
 ## Use IntelliJ (IDE)
 You can use Intellij IDEA with Ant Build to create archive with `jar` et run the program.
-* Fill the champs "arguments of application" with `<Regex> <file-path>` :
+* Fill the champs "arguments of application" with `<Regex> <file-path> <out-file-path>` :
     * `<Regex>` is an regular expression with the form of ERE
     * `<file-path>` is the path of the file
+    * `<out-file-path>` is the output file for testing
 
 
 ## Compiler and executing with Terminal - CLI
 * Install Ant and JDK with version >= 1.8
 * Use `ant dist` to create archive in `jar` in the folder `build`
 * `cd build`
-* `java -jar egrep.jar <Regex> <file-path>`.
+* `java -jar egrep.jar <Regex> <file-path> <out-file-path>`.
 
