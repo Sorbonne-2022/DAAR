@@ -28,7 +28,7 @@ public class Main {
                 text = readFileAsString(arg[1] + "/" + path);
 
                 System.out.println("  >> Factor: \"" + factor + "\".");
-                System.out.println("  >> Your file path: " + arg[1]);
+                System.out.println("  >> Your file path: " + arg[1] + "/" + path);
 
                 KMP kmp = new KMP(factor);
 
@@ -40,7 +40,7 @@ public class Main {
                     outFilePath = "./data/kmp/txt";
                 }
 
-                long start = new Date().getTime();
+                long start = System.currentTimeMillis();
 
                 for (int i = 0; i < lineLen; i++) {
                     kmp.setText(lines[i]);
@@ -49,7 +49,7 @@ public class Main {
                     }
                 }
 
-                long end = new Date().getTime();
+                long end = System.currentTimeMillis();
 
                 FileHelper.writeFile(arg[2], text.length() + " " + (end - start) + "\n");
 
