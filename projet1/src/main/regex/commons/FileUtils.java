@@ -3,7 +3,7 @@ package src.main.regex.commons;
 import java.io.*;
 import java.util.ArrayList;
 
-public class FileHelper {
+public class FileUtils {
     public static String readFileAsString(String filePath) {
         StringBuilder fileData = new StringBuilder();
         try {

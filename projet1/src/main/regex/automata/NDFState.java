@@ -8,6 +8,14 @@ class NDFState {
     protected int[][] transitionTable; //ASCII transition
     protected ArrayList<Integer>[] epsilonTransitionTable; //epsilon transition list
 
+    public int[][] getTransitionTable() {
+        return transitionTable;
+    }
+
+    public ArrayList<Integer>[] getEpsilonTransitionTable() {
+        return epsilonTransitionTable;
+    }
+
     public NDFState(int[][] transitionTable, ArrayList<Integer>[] epsilonTransitionTable) {
         this.transitionTable = transitionTable;
         this.epsilonTransitionTable = epsilonTransitionTable;

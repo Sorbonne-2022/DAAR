@@ -1,10 +1,14 @@
 package src.main.regex.automata;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static src.main.regex.automata.OperatorEnum.*;
 
 public class RegEx {
+    static int compteur = 0;
+    static int compteurDFA = 0;
+
     //CONSTRUCTOR
     public RegEx() {
     }

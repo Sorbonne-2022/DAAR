@@ -1,13 +1,12 @@
 package src.main.regex.kmp;
 
-import src.main.regex.commons.FileHelper;
+import src.main.regex.commons.FileUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import static src.main.regex.commons.FileHelper.readFileAsString;
+import static src.main.regex.commons.FileUtils.readFileAsString;
 
 public class Main {
     private static String factor;
@@ -20,9 +19,9 @@ public class Main {
     public static void main(String[] arg) throws IOException {
         if (arg.length > 2) {
             factor = arg[0];
-            inputFilePaths = FileHelper.findAllFilesInFolder(arg[1]);
+            inputFilePaths = FileUtils.findAllFilesInFolder(arg[1]);
 
-            FileHelper.deleteFile(arg[2]);
+            FileUtils.deleteFile(arg[2]);
 
             for (String path : inputFilePaths) {
                 text = readFileAsString(arg[1] + "/" + path);
@@ -51,7 +50,7 @@ public class Main {
 
                 long end = System.currentTimeMillis();
 
-                FileHelper.writeFile(arg[2], text.length() + " " + (end - start) + "\n");
+                FileUtils.writeFile(arg[2], text.length() + " " + (end - start) + "\n");
 
                 System.out.println("  >> ...");
 

@@ -3,7 +3,7 @@ package src.main.regex.bm;
 import java.io.IOException;
 import java.util.Scanner;
 
-import static src.main.regex.commons.FileHelper.readFileAsString;
+import static src.main.regex.commons.FileUtils.readFileAsString;
 
 public class Main {
 

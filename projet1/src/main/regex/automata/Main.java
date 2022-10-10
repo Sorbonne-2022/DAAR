@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 import static src.main.regex.automata.NDF.toNDFAutomaton;
-import static src.main.regex.commons.FileHelper.readFileAsString;
+import static src.main.regex.commons.FileUtils.readFileAsString;
 
 public class Main {
     private static String regEx;
@@ -39,6 +39,10 @@ public class Main {
 
                 assert ndfState != null;
                 System.out.println("  >> NDF result: " + ndfState.toString() + ".");
+
+                DFAState dfaState = new DFAState(ndfState);
+                System.out.println("  >> DFAState : " + dfaState.toString() + ".");
+
             } catch (Exception e) {
                 System.err.println("  >> ERROR: syntax error for regEx \"" + regEx + "\".");
             }

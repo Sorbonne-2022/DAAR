@@ -2,7 +2,7 @@ package src.main.regex.automata;
 
 import java.util.ArrayList;
 
-import static src.main.regex.automata.OperatorEnum.*;
+import static src.main.regex.commons.RegexUtils.valueToString;
 
 class RegExTree {
     protected int root;
@@ -15,17 +15,9 @@ class RegExTree {
 
     //FROM TREE TO PARENTHESIS
     public String toString() {
-        if (subTrees.isEmpty()) return rootToString();
-        String result = rootToString() + "(" + subTrees.get(0).toString();
+        if (subTrees.isEmpty()) return valueToString(root);
+        String result = valueToString(root) + "(" + subTrees.get(0).toString();
         for (int i = 1; i < subTrees.size(); i++) result += "," + subTrees.get(i).toString();
         return result + ")";
-    }
-
-    private String rootToString() {
-        if (root == CONCAT) return ".";
-        if (root == ETOILE) return "*";
-        if (root == ALTERN) return "|";
-        if (root == DOT) return ".";
-        return Character.toString((char) root);
     }
 }
