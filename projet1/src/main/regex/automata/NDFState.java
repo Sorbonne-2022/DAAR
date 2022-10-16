@@ -2,7 +2,7 @@ package src.main.regex.automata;
 
 import java.util.ArrayList;
 
-class NDFState {
+public class NDFState {
     //IMPLICIT REPRESENTATION HERE: INIT STATE IS ALWAYS 0; FINAL STATE IS ALWAYS transitionTable.length-
 
     protected int[][] transitionTable; //ASCII transition

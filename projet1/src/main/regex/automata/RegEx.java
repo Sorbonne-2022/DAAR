@@ -43,7 +43,7 @@ public class RegEx {
         while (containConcat(result)) result = processConcat(result);
         while (containAltern(result)) result = processAltern(result);
 
-        if (result.size() > 1) throw new Exception();
+        if (result.size() < 1) throw new Exception();
 
         return removeProtection(result.get(0));
     }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import static src.main.regex.commons.RegexUtils.valueToString;
 
-class RegExTree {
+public class RegExTree {
     protected int root;
     protected ArrayList<RegExTree> subTrees;
 

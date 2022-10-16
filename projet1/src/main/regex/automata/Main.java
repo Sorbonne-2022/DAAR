@@ -13,6 +13,7 @@ public class Main {
 
     //MAIN
     public static void main(String[] arg) throws IOException {
+
         if (arg.length > 1) {
             regEx = arg[0];
             text = readFileAsString(arg[1]);
@@ -38,10 +39,10 @@ public class Main {
                 NDFState ndfState = toNDFAutomaton(ret);
 
                 assert ndfState != null;
-                System.out.println("  >> NDF result: " + ndfState.toString() + ".");
+                System.out.println("  >> NDF result: " + ndfState + ".");
 
-                DFAState dfaState = new DFAState(ndfState);
-                System.out.println("  >> DFAState : " + dfaState.toString() + ".");
+                DFA dfaState = new DFA(ndfState);
+                System.out.println("  >> DFAState : " + dfaState + ".");
 
             } catch (Exception e) {
                 System.err.println("  >> ERROR: syntax error for regEx \"" + regEx + "\".");
